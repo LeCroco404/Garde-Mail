@@ -1,0 +1,22 @@
+# Site statique : aucune commande de build, Netlify publie le dossier tel quel
+[build]
+  publish = "public"
+
+# En-têtes de sécurité appliqués à toutes les pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # default-src 'self'   : par défaut, uniquement les fichiers du site
+    # connect-src          : seules destinations autorisées pour fetch() (DoH x2 + Pwned Passwords)
+    # object-src / base-uri: bloque plugins et détournement des URL relatives
+    # form-action 'none'   : aucun formulaire ne peut être soumis vers un serveur
+    # frame-ancestors      : le site ne peut pas être affiché dans une iframe (anti-clickjacking)
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://cloudflare-dns.com https://dns.google https://api.pwnedpasswords.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    # Aucune URL d'origine transmise quand on suit un lien (ex. vers Have I Been Pwned)
+    Referrer-Policy = "no-referrer"
+    # Empêche le navigateur de deviner le type d'un fichier
+    X-Content-Type-Options = "nosniff"
+    # Désactive les API sensibles inutiles ici
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # Force le HTTPS pendant un an
+    Strict-Transport-Security = "max-age=31536000"

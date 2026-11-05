@@ -1,0 +1,11 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+# Éditeurs
+.vscode/
+.idea/
+# Outils
+node_modules/
+.netlify/
+# Secrets éventuels (aucun prévu)
+.env
