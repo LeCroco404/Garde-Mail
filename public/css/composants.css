@@ -84,6 +84,16 @@
 .verdict--douteux { background: var(--att-fond); color: var(--att-texte); border-color: var(--att-bord); }
 .verdict--usurpe { background: var(--danger-fond); color: var(--danger-texte); border-color: var(--danger-bord); }
 
+/* Niveaux du module 2 : « Peu de signaux » reste neutre (bleu), pour ne pas suggérer « sans danger » */
+.verdict--faible { background: var(--accent-fond); color: var(--texte); border-color: var(--accent); }
+.verdict--suspect { background: var(--att-fond); color: var(--att-texte); border-color: var(--att-bord); }
+.verdict--eleve { background: var(--danger-fond); color: var(--danger-texte); border-color: var(--danger-bord); }
+
+.score { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; font-weight: 600; }
+.score meter { width: 12rem; max-width: 100%; height: 1.1rem; }
+.preuves { color: var(--texte-doux); }
+.verdict--suspect .preuves, .verdict--eleve .preuves { color: inherit; }
+
 /* Listes de vérifications et de signaux */
 .liste-verifs, .liste-signaux { list-style: none; margin: 0; padding: 0; }
 .liste-verifs li, .liste-signaux li {

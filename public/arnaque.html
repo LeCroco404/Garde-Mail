@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ce message est-il une arnaque ? · Garde-Mail</title>
+  <meta name="description" content="Repérez les signaux d'arnaque dans un SMS ou un mail : faux liens, urgence, demande de paiement ou de code. Analyse faite dans votre navigateur.">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/composants.css">
+  <script type="module" src="js/arnaque/page.js"></script>
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <header class="entete-site">
+    <div class="conteneur entete-site__interieur">
+      <a class="marque" href="index.html">Garde-Mail</a>
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="authenticite.html">Mail authentique ?</a></li>
+          <li><a href="arnaque.html" aria-current="page">Arnaque ?</a></li>
+          <li><a href="fuite.html">Fuite de données ?</a></li>
+          <li><a href="si-j-ai-clique.html">J'ai cliqué</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur" tabindex="-1">
+    <h1>Ce message est-il une arnaque ?</h1>
+    <p class="chapeau">Collez le texte d'un SMS ou d'un mail suspect. L'outil repère les signaux d'alerte habituels : liens qui imitent un organisme, urgence, demande de paiement, de données ou de code.</p>
+
+    <p class="note-confidentialite">
+      <strong>Confidentialité :</strong> l'analyse se fait entièrement dans votre navigateur. Le texte collé n'est ni enregistré ni envoyé, et les liens ne sont jamais ouverts.
+      <a href="confidentialite.html">En savoir plus</a>
+    </p>
+
+    <noscript><p class="alerte">Cet outil a besoin de JavaScript pour fonctionner.</p></noscript>
+
+    <form id="formulaire-message" class="formulaire" method="post" novalidate>
+      <div class="champ">
+        <label for="message">Texte du SMS ou du mail</label>
+        <p id="message-aide" class="aide">Copiez le message en entier, liens compris. Ne cliquez pas sur les liens pour les copier : faites un appui long ou un clic droit, puis « Copier le lien ».</p>
+        <textarea id="message" name="message" rows="10" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" aria-describedby="message-aide"></textarea>
+      </div>
+      <p id="chargement" class="alerte">Chargement de l'outil… Si ce message reste affiché, l'outil n'a pas pu se charger : rechargez la page.</p>
+      <div class="boutons">
+        <button type="submit" class="bouton bouton--principal" disabled>Analyser</button>
+        <button type="button" id="effacer" class="bouton bouton--secondaire">Effacer</button>
+      </div>
+    </form>
+
+    <p id="annonce" class="sr-only" aria-live="polite"></p>
+    <section id="resultat" class="resultat" aria-label="Résultat de l'analyse"></section>
+
+    <section class="reflexes" aria-labelledby="titre-reflexes">
+      <h2 id="titre-reflexes">Les bons réflexes</h2>
+      <p>En cas de doute, ne répondez pas, ne cliquez sur aucun lien et ne communiquez aucune information. Contactez directement l'organisme concerné avec ses coordonnées habituelles, jamais celles du message.</p>
+      <p>Signalez les mails suspects sur <a href="https://www.signal-spam.fr" rel="noopener noreferrer">signal-spam.fr</a> et les SMS suspects en les transférant gratuitement au 33700. Pour un conseil, Info Escroqueries répond au 0 805 805 817 (appel gratuit).</p>
+      <p class="aide">Sources : <a href="https://www.cybermalveillance.gouv.fr/medias/2026/02/260129_FicheReflexe_Hameconnage.pdf" rel="noopener noreferrer">fiche réflexe « Hameçonnage » de Cybermalveillance.gouv.fr</a> ; <a href="https://www.economie.gouv.fr/dgccrf/sms-et-appels-indesirables-le-33-700-facilite-le-signalement-des-numeros-frauduleux" rel="noopener noreferrer">DGCCRF, le 33 700</a>.</p>
+    </section>
+  </main>
+
+  <footer class="pied-site">
+    <div class="conteneur">
+      <p>Garde-Mail aide à décider mais ne garantit rien. <a href="confidentialite.html">Confidentialité</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Bonjour, ici le service fraude de votre banque. Une opération suspecte de 890 € a été détectée sur votre compte. Pour l'annuler immédiatement, communiquez-nous le code que vous allez recevoir par SMS.

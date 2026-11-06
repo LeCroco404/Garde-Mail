@@ -1,0 +1,1 @@
+PayPal : une connexion inhabituelle a été détectée. Votre compte sera suspendu si vous ne confirmez pas votre identité. Connectez-vous avec votre identifiant et votre mot de passe : https://www.paypa1.test/login
