@@ -36,6 +36,20 @@
   resize: vertical;
 }
 
+/* Champ mot de passe + bouton Afficher sur une ligne */
+.champ-mdp { display: flex; gap: 0.5rem; margin-top: 0.35rem; }
+.champ input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: var(--fond);
+  color: var(--texte);
+  font: inherit;
+}
+
 .boutons { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
 
 .bouton {
@@ -50,6 +64,16 @@
 .bouton--principal { background: var(--accent); color: var(--fond); }
 .bouton--secondaire { background: transparent; color: var(--accent); }
 .bouton:disabled { opacity: 0.6; cursor: wait; }
+a.bouton { display: inline-flex; align-items: center; text-decoration: none; }
+
+.conseils li { margin-bottom: 0.6rem; }
+.explication {
+  border: 1px solid var(--bordure-douce);
+  border-radius: var(--rayon);
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+.explication summary { cursor: pointer; font-weight: 600; padding: 0.75rem 0; }
 
 /* Verdict : couleur + icône + texte, jamais la couleur seule */
 .resultat:empty { display: none; }

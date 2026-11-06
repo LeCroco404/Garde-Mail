@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mes données ont-elles fuité ? · Garde-Mail</title>
+  <meta name="description" content="Vérifiez si un mot de passe apparaît dans des fuites de données connues, sans jamais l'envoyer, et découvrez quoi faire en cas de fuite.">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/composants.css">
+  <script type="module" src="js/fuite/page.js"></script>
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <header class="entete-site">
+    <div class="conteneur entete-site__interieur">
+      <a class="marque" href="index.html">Garde-Mail</a>
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="authenticite.html">Mail authentique ?</a></li>
+          <li><a href="arnaque.html">Arnaque ?</a></li>
+          <li><a href="fuite.html" aria-current="page">Fuite de données ?</a></li>
+          <li><a href="si-j-ai-clique.html">J'ai cliqué</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="conteneur" tabindex="-1">
+    <h1>Mes données ont-elles fuité ?</h1>
+    <p class="chapeau">Des mots de passe volés lors de piratages circulent entre fraudeurs. Vérifiez si l'un des vôtres en fait partie, et découvrez quoi faire si c'est le cas.</p>
+
+    <noscript><p class="alerte">Cet outil a besoin de JavaScript pour fonctionner.</p></noscript>
+
+    <section aria-labelledby="titre-mdp">
+      <h2 id="titre-mdp">Vérifier un mot de passe</h2>
+
+      <p class="note-confidentialite">
+        <strong>Votre mot de passe ne quitte jamais votre navigateur.</strong> Seuls les 5 premiers caractères de son empreinte sont envoyés au service Pwned Passwords. Rien n'est enregistré.
+        <a href="confidentialite.html">En savoir plus</a>
+      </p>
+
+      <details class="explication">
+        <summary>Comment est-ce possible ?</summary>
+        <p>Votre navigateur transforme le mot de passe en une <strong>empreinte</strong> : une suite de 40 caractères calculée par la fonction SHA-1. Le calcul est impossible à inverser. Par exemple, « password » donne toujours <code>5BAA61E4C9B93F3F0682250B6CF8331B7EE68FD8</code>.</p>
+        <p>Seuls les 5 premiers caractères (<code>5BAA6</code>) sont envoyés. Le service renvoie les centaines d'empreintes connues qui commencent ainsi, complétées de fausses lignes pour brouiller la taille de la réponse. La comparaison se fait ensuite dans votre navigateur : le service ne sait jamais quel mot de passe vous avez vérifié, ni s'il a été trouvé. Cette méthode s'appelle le k-anonymat.</p>
+      </details>
+
+      <form id="formulaire-mdp" class="formulaire" method="post" novalidate>
+        <div class="champ">
+          <label for="mot-de-passe">Mot de passe à vérifier</label>
+          <div class="champ-mdp">
+            <!-- data-*-ignore : demande aux gestionnaires de mots de passe de ne pas proposer d'enregistrer ce champ -->
+            <input id="mot-de-passe" type="password" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off" data-1p-ignore data-lpignore="true" data-bwignore>
+            <button type="button" id="afficher" class="bouton bouton--secondaire" aria-pressed="false" aria-controls="mot-de-passe">Afficher</button>
+          </div>
+        </div>
+        <p id="chargement" class="alerte">Chargement de l'outil… Si ce message reste affiché, l'outil n'a pas pu se charger : rechargez la page.</p>
+        <div class="boutons">
+          <button type="submit" class="bouton bouton--principal" disabled>Vérifier</button>
+        </div>
+      </form>
+
+      <p id="annonce" class="sr-only" aria-live="polite"></p>
+      <section id="resultat" class="resultat" aria-label="Résultat de la vérification"></section>
+    </section>
+
+    <section aria-labelledby="titre-mail">
+      <h2 id="titre-mail">Vérifier une adresse mail</h2>
+      <p>Garde-Mail ne vérifie pas les adresses mail : le service qui le permet est payant, et il faudrait lui envoyer votre adresse.</p>
+      <p>Le site Have I Been Pwned permet de faire cette recherche vous-même. Il est utilisé par plusieurs gouvernements européens (Espagne, Allemagne, Autriche…) pour surveiller leurs propres adresses.</p>
+      <p class="alerte">À savoir : la CNIL déconseille en général les sites qui disent pouvoir vous indiquer si vos données ont fuité. Elle recommande d'interroger directement l'organisme concerné, qui doit informer les personnes exposées. À vous de décider.</p>
+      <p><a class="bouton bouton--secondaire" href="https://haveibeenpwned.com/" rel="noopener noreferrer">Ouvrir Have I Been Pwned</a></p>
+    </section>
+
+    <section aria-labelledby="titre-conseils">
+      <h2 id="titre-conseils">Si votre mot de passe ou vos données ont fuité</h2>
+      <ol class="conseils">
+        <li><strong>Changez le mot de passe sans attendre</strong> sur chaque service où vous l'utilisez. Commencez par les services importants : messagerie, impôts, banque, achats en ligne.</li>
+        <li><strong>Un mot de passe différent pour chaque service</strong>, d'au moins 12 caractères mêlant majuscules, minuscules, chiffres et caractères spéciaux.</li>
+        <li><strong>Rangez-les dans un gestionnaire de mots de passe.</strong> Cybermalveillance.gouv.fr cite KeePassXC, gratuit, en français et certifié par l'ANSSI.</li>
+        <li><strong>Activez la double authentification</strong> partout où c'est possible : un code ou une validation s'ajoute au mot de passe.</li>
+        <li><strong>Méfiez-vous des messages très réalistes</strong> : les fraudeurs utilisent les données volées pour vous tromper. Passez toujours par l'adresse officielle du service, tapée vous-même.</li>
+        <li><strong>En cas d'usurpation d'identité</strong>, déposez plainte, prévenez votre banque et demandez la consultation du fichier FICOBA via impots.gouv.fr, pour repérer un compte ouvert à votre insu.</li>
+      </ol>
+      <p class="aide">Sources : <a href="https://cnil.fr/fr/conseils-fuite-vol-donnees" rel="noopener noreferrer">CNIL, fuite ou vol de données</a> ; <a href="https://www.cybermalveillance.gouv.fr/medias/2023/04/260505_FichePratique_MotsDePasse.pdf" rel="noopener noreferrer">Cybermalveillance.gouv.fr, fiche pratique mots de passe</a>.</p>
+    </section>
+  </main>
+
+  <footer class="pied-site">
+    <div class="conteneur">
+      <p>Garde-Mail aide à décider mais ne garantit rien. <a href="confidentialite.html">Confidentialité</a></p>
+    </div>
+  </footer>
+</body>
+</html>
