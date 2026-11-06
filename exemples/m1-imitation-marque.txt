@@ -1,0 +1,16 @@
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@example.net header.s=k1 header.b=Zz99Yy88;
+       spf=pass (google.com: domain of contact@example.net designates 192.0.2.40 as permitted sender) smtp.mailfrom=contact@example.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=example.net
+Return-Path: <contact@example.net>
+Received: from envoi.example.net (envoi.example.net. [192.0.2.40])
+        by mx.google.com with ESMTPS id c3si111111wrx.30.2026.11.04.10.00.00
+        for <destinataire@example.org>;
+        Wed, 04 Nov 2026 10:00:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; d=example.net; s=k1; h=from:to:subject; bh=Xx=; b=Zz99Yy88
+From: "Assurance Maladie - remboursement@ameli.fr" <contact@example.net>
+To: destinataire@example.org
+Subject: Un remboursement de 148,50 EUR est en attente
+Date: Wed, 4 Nov 2026 19:00:00 +0100
+
+Vous avez droit à un remboursement.

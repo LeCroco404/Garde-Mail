@@ -1,0 +1,18 @@
+Received: from AM0PR01MB1234.eurprd01.prod.outlook.example (2603:10a6:208:1::1) by
+ DB9PR01MB5678.eurprd01.prod.outlook.example with HTTPS; Thu, 5 Nov 2026 08:01:10 +0000
+Authentication-Results: spf=pass (sender IP is 203.0.113.80)
+ smtp.mailfrom=envoi.prestataire.test; dkim=pass (signature was verified)
+ header.d=example.com;dmarc=pass action=none
+ header.from=example.com;compauth=pass reason=100
+Received-SPF: Pass (protection.outlook.example: domain of envoi.prestataire.test
+ designates 203.0.113.80 as permitted sender) receiver=protection.outlook.example;
+ client-ip=203.0.113.80; helo=smtp.prestataire.test;
+Return-Path: rebond-8f2a@envoi.prestataire.test
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=example.com; s=news;
+ h=from:to:subject:date; bh=QwErTy=; b=AsDfGh
+From: Exemple Boutique <newsletter@example.com>
+To: destinataire@example.org
+Subject: Nos nouveautés de novembre
+Date: Thu, 5 Nov 2026 09:01:05 +0100
+
+Découvrez nos nouveautés.

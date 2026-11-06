@@ -1,0 +1,21 @@
+Delivered-To: destinataire@example.org
+Received: by 2002:a05:6000:1a8b:b0:2c5:1234:abcd with SMTP id y22csp654321wrn;
+        Wed, 4 Nov 2026 07:40:02 -0800 (PST)
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@example.net designates 198.51.100.7 as permitted sender) smtp.mailfrom=noreply@example.net;
+       dmarc=fail (p=REJECT sp=REJECT dis=QUARANTINE) header.from=example.com
+Return-Path: <noreply@example.net>
+Received: from serveur.example.net (serveur.example.net. [198.51.100.7])
+        by mx.google.com with ESMTP id b2si654321wrx.20.2026.11.04.07.40.02
+        for <destinataire@example.org>;
+        Wed, 04 Nov 2026 07:40:02 -0800 (PST)
+Authentication-Results: mail.example.com; spf=pass; dkim=pass; dmarc=pass
+From: "Exemple Banque" <securite@example.com>
+Reply-To: <assistance@example.org>
+To: destinataire@example.org
+Subject: URGENT : votre compte sera suspendu sous 24 h
+Date: Wed, 4 Nov 2026 16:39:58 +0100
+Message-ID: <abc123@serveur.example.net>
+Content-Type: text/plain; charset="UTF-8"
+
+Votre compte a été bloqué. Cliquez ici pour le réactiver.

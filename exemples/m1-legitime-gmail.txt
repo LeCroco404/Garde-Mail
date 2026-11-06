@@ -1,0 +1,24 @@
+Delivered-To: destinataire@example.org
+Received: by 2002:a05:6000:1a8b:b0:2c5:1234:abcd with SMTP id x11csp123456wrn;
+        Tue, 3 Nov 2026 09:12:44 -0800 (PST)
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@example.com header.s=s2026 header.b=Ab12Cd34;
+       spf=pass (google.com: domain of bounces@mail.example.com designates 203.0.113.25 as permitted sender) smtp.mailfrom=bounces@mail.example.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=example.com
+Return-Path: <bounces@mail.example.com>
+Received: from mail.example.com (mail.example.com. [203.0.113.25])
+        by mx.google.com with ESMTPS id a1si123456wrx.10.2026.11.03.09.12.44
+        for <destinataire@example.org>;
+        Tue, 03 Nov 2026 09:12:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=example.com; s=s2026;
+        h=from:to:subject:date:message-id; bh=AbCdEf123456=; b=Ab12Cd34Ef56
+From: =?UTF-8?Q?Exemple_Banque_=E2=80=93_Service_client?= <info@example.com>
+To: destinataire@example.org
+Subject: Votre relevé mensuel est disponible
+Date: Tue, 3 Nov 2026 18:12:40 +0100
+Message-ID: <20261103171240.12345@mail.example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+Bonjour,
+Votre relevé mensuel est disponible dans votre espace client.

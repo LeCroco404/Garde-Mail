@@ -1,0 +1,145 @@
+/* Composants réutilisés par les trois modules */
+
+.chapeau { font-size: 1.125rem; }
+
+.aide { color: var(--texte-doux); font-size: 0.95rem; margin: 0.25rem 0 0.5rem; }
+
+.note-confidentialite {
+  background: var(--accent-fond);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--rayon);
+  padding: 0.75rem 1rem;
+}
+
+.alerte {
+  background: var(--att-fond);
+  color: var(--att-texte);
+  border-left: 4px solid var(--att-bord);
+  border-radius: var(--rayon);
+  padding: 0.75rem 1rem;
+}
+
+/* Formulaire */
+.champ label { display: block; font-weight: 700; }
+.champ textarea {
+  display: block;
+  width: 100%;
+  min-height: 14rem;
+  padding: 0.75rem;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police-code);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.boutons { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+
+.bouton {
+  min-height: 44px; /* cible tactile confortable */
+  padding: 0.55rem 1.1rem;
+  border: 2px solid var(--accent);
+  border-radius: var(--rayon);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.bouton--principal { background: var(--accent); color: var(--fond); }
+.bouton--secondaire { background: transparent; color: var(--accent); }
+.bouton:disabled { opacity: 0.6; cursor: wait; }
+
+/* Verdict : couleur + icône + texte, jamais la couleur seule */
+.resultat:empty { display: none; }
+.verdict {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 1rem 1.25rem;
+  border: 2px solid;
+  border-left-width: 8px;
+  border-radius: var(--rayon);
+}
+.verdict p { margin: 0 0 0.6rem; }
+.verdict p:last-child { margin-bottom: 0; }
+.verdict__icone {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.verdict__titre { font-size: 1.3rem; font-weight: 700; }
+/* Sur petit écran, l'icône passe au-dessus pour laisser toute la largeur au texte */
+@media (max-width: 30rem) {
+  .verdict { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+.verdict--authentique { background: var(--ok-fond); color: var(--ok-texte); border-color: var(--ok-bord); }
+.verdict--douteux { background: var(--att-fond); color: var(--att-texte); border-color: var(--att-bord); }
+.verdict--usurpe { background: var(--danger-fond); color: var(--danger-texte); border-color: var(--danger-bord); }
+
+/* Listes de vérifications et de signaux */
+.liste-verifs, .liste-signaux { list-style: none; margin: 0; padding: 0; }
+.liste-verifs li, .liste-signaux li {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--bordure-douce);
+}
+.signal { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; }
+
+.badge {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.badge--info { background: var(--accent-fond); color: var(--accent); border-color: var(--accent); }
+.badge--attention { background: var(--att-fond); color: var(--att-texte); border-color: var(--att-bord); }
+.badge--grave { background: var(--danger-fond); color: var(--danger-texte); border-color: var(--danger-bord); }
+
+code { background: var(--surface); padding: 0.1rem 0.35rem; border-radius: 0.25rem; overflow-wrap: anywhere; }
+pre.brut {
+  margin: 0.25rem 0 1rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border-radius: var(--rayon);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bloc-dns {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--bordure-douce);
+  border-radius: var(--rayon);
+}
+.bloc-dns h3 { margin-top: 0; }
+
+.rappel {
+  margin-top: 1.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--bordure-douce);
+  color: var(--texte-doux);
+}
+
+/* Guide en accordéons natifs (<details>), accessibles au clavier */
+.guide details {
+  border: 1px solid var(--bordure-douce);
+  border-radius: var(--rayon);
+  padding: 0 1rem;
+  margin-bottom: 0.5rem;
+}
+.guide summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.75rem 0;
+}
+.guide details[open] { padding-bottom: 0.75rem; }

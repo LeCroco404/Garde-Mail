@@ -1,0 +1,9 @@
+Received: from serveur.example.net ([198.51.100.99])
+        by mail.example.org; Thu, 5 Nov 2026 10:15:00 +0100
+Return-Path: <x@example.net>
+From: Service Client <service@example.com>
+To: destinataire@example.org
+Subject: Confirmez vos informations
+Date: Thu, 5 Nov 2026 10:14:55 +0100
+
+Merci de confirmer vos informations.

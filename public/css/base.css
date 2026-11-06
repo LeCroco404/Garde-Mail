@@ -1,0 +1,141 @@
+/*
+ * Base commune : couleurs, typographie, mise en page, focus.
+ * Contrastes vérifiés au niveau AA (4,5:1 pour le texte) en clair et en sombre.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  --fond: #ffffff;
+  --surface: #f3f5f8;
+  --texte: #1b1f24;
+  --texte-doux: #4b5563;
+  --accent: #0b57a4;
+  --accent-fond: #e8f0fa;
+  --bordure: #6b7280;
+  --bordure-douce: #d6dbe1;
+
+  --ok-fond: #e7f5ec;
+  --ok-texte: #14532d;
+  --ok-bord: #15803d;
+  --att-fond: #fff5e1;
+  --att-texte: #6b3a00;
+  --att-bord: #b45309;
+  --danger-fond: #fdecec;
+  --danger-texte: #7f1d1d;
+  --danger-bord: #b91c1c;
+
+  --rayon: 0.5rem;
+  --largeur: 46rem;
+  --police: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --police-code: ui-monospace, Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fond: #111418;
+    --surface: #1b2027;
+    --texte: #e6e9ed;
+    --texte-doux: #aab3bf;
+    --accent: #8cbcff;
+    --accent-fond: #16253a;
+    --bordure: #8a94a3;
+    --bordure-douce: #323a45;
+
+    --ok-fond: #0f2a1a;
+    --ok-texte: #a7e8bf;
+    --ok-bord: #3fa46a;
+    --att-fond: #2e2108;
+    --att-texte: #f8d08a;
+    --att-bord: #d08a2a;
+    --danger-fond: #3a1414;
+    --danger-texte: #f5b5b5;
+    --danger-bord: #e05252;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3 { line-height: 1.25; }
+h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); margin: 1.5rem 0 0.75rem; }
+h2 { font-size: 1.4rem; margin: 2.25rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+
+a { color: var(--accent); text-underline-offset: 0.15em; }
+
+code, pre { font-family: var(--police-code); font-size: 0.9em; }
+
+/* Focus toujours visible au clavier */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+main:focus { outline: none; } /* cible du lien d'évitement, pas un élément interactif */
+
+.conteneur {
+  max-width: var(--largeur);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* Lien « Aller au contenu » : caché jusqu'à ce qu'il reçoive le focus */
+.lien-evitement {
+  position: absolute;
+  left: 1rem;
+  top: -10rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: var(--fond);
+  border-radius: var(--rayon);
+  z-index: 10;
+}
+.lien-evitement:focus { top: 0.5rem; }
+
+/* Texte réservé aux lecteurs d'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* En-tête et pied de page */
+.entete-site { border-bottom: 1px solid var(--bordure-douce); }
+.entete-site__interieur {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 0.75rem;
+}
+.marque { font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--texte); }
+.entete-site ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.entete-site nav a { display: inline-block; padding: 0.35rem 0; }
+.entete-site nav a[aria-current="page"] { font-weight: 700; color: var(--texte); }
+
+.pied-site {
+  margin-top: 3rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--bordure-douce);
+  color: var(--texte-doux);
+  font-size: 0.95rem;
+}
