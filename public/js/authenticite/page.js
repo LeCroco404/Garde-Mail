@@ -20,17 +20,14 @@ const zoneResultat = document.getElementById('resultat');
 const VERDICTS = {
   authentique: {
     titre: 'Authentique',
-    icone: '✓',
     texte: (d) => `Ce message vient bien du domaine affiché : ${d}. Votre messagerie a vérifié qu'il a été envoyé par un serveur autorisé par ce domaine. Attention : cela prouve qui l'a envoyé, pas qu'il est honnête. Un escroc peut créer son propre domaine (comme banque-securite-client.fr) et l'authentifier parfaitement. Vérifiez que ce domaine est bien celui de l'organisme, et analysez le texte avec le module « Ce message est-il une arnaque ? ».`,
   },
   douteux: {
     titre: 'Douteux',
-    icone: '!',
     texte: (d) => `Impossible de confirmer que ce message vient bien de ${d}. Ce n'est pas forcément une fraude : certains envois légitimes (newsletters, transferts automatiques) donnent ce résultat. Ne cliquez sur aucun lien et ne répondez pas avant d'avoir contacté l'organisme par un autre moyen : son site officiel, que vous tapez vous-même, ou son numéro habituel.`,
   },
   usurpe: {
     titre: 'Usurpé probable',
-    icone: '✕',
     texte: (d) => `Ce message prétend venir de ${d}, mais votre messagerie indique qu'il n'a pas été envoyé par ce domaine. C'est le signe typique d'une usurpation. Ne cliquez sur aucun lien, n'ouvrez pas les pièces jointes et ne répondez pas. Signalez-le sur signal-spam.fr, puis supprimez-le.`,
   },
 };
@@ -96,12 +93,11 @@ function afficherResultat(r) {
   }
 
   const v = VERDICTS[r.statut];
-  // Le verdict est porté par un texte et une icône, pas seulement par la couleur.
+  // Le verdict est un tampon : un mot écrit, pas seulement une couleur.
   zoneResultat.append(
     creer('div', { classe: `verdict verdict--${r.statut}` }, [
-      creer('span', { classe: 'verdict__icone', texte: v.icone, attributs: { 'aria-hidden': 'true' } }),
+      creer('p', { classe: 'tampon', texte: v.titre }),
       creer('div', {}, [
-        creer('p', { classe: 'verdict__titre', texte: v.titre }),
         creer('p', { texte: v.texte(r.expediteur.domaine) }),
         creer('p', { classe: 'verdict__raison' }, [creer('strong', { texte: 'Pourquoi : ' }), r.raison]),
       ]),

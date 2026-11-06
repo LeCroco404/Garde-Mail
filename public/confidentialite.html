@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confidentialité · Garde-Mail</title>
+  <meta name="description" content="Ce que Garde-Mail fait de vos données : rien n'est envoyé ni enregistré, à deux exceptions près, expliquées ici.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="polices/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/composants.css">
+</head>
+<body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <header class="entete-site">
+    <div class="conteneur entete-site__interieur">
+      <a class="marque" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="2.5" y="7" width="27" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M4 9.5 16 18l12-8.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>Garde-Mail</a>
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="authenticite.html">Mail authentique ?</a></li>
+          <li><a href="arnaque.html">Arnaque ?</a></li>
+          <li><a href="fuite.html">Fuite de données ?</a></li>
+          <li><a href="si-j-ai-clique.html">J'ai cliqué</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" tabindex="-1">
+    <div class="bandeau">
+      <div class="conteneur">
+        <h1>Confidentialité</h1>
+        <p class="chapeau">Garde-Mail est conçu pour ne rien savoir de vous. Voici exactement ce qui se passe quand vous l'utilisez.</p>
+      </div>
+    </div>
+    <div class="conteneur">
+      <section aria-labelledby="c1">
+        <h2 id="c1">Ce qui reste dans votre navigateur</h2>
+        <p>Les en-têtes, les messages et les mots de passe que vous saisissez sont analysés par le code de la page, directement sur votre appareil. Ils ne sont ni envoyés à un serveur, ni enregistrés : fermer ou recharger la page les efface.</p>
+        <p>Le site n'utilise ni compte, ni cookie, ni stockage local, ni outil de mesure d'audience. Le correcteur orthographique est désactivé dans les champs, car certains correcteurs envoient le texte saisi à un serveur pour l'analyser.</p>
+      </section>
+
+      <section aria-labelledby="c2">
+        <h2 id="c2">Les deux seules informations qui peuvent sortir</h2>
+        <p>Elles ne partent que si vous lancez l'action correspondante, sans cookie et sans indiquer de quelle page vient la demande.</p>
+        <div class="tableau-defilant">
+          <table>
+            <thead>
+              <tr><th scope="col">Quand</th><th scope="col">Ce qui est envoyé</th><th scope="col">À qui</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Vous cliquez sur « Consulter le DNS » (Ce mail est-il authentique ?)</td>
+                <td>Le nom de domaine de l'expéditeur, par exemple <code>example.com</code>. Jamais le contenu du mail.</td>
+                <td>Cloudflare, ou Google en secours (service DNS-over-HTTPS)</td>
+              </tr>
+              <tr>
+                <td>Vous vérifiez un mot de passe (Mes données ont-elles fuité ?)</td>
+                <td>Les 5 premiers caractères de son empreinte SHA-1, par exemple <code>5BAA6</code>. Jamais le mot de passe, ni l'empreinte complète.</td>
+                <td>Pwned Passwords (api.pwnedpasswords.com)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section aria-labelledby="c3">
+        <h2 id="c3">Une règle imposée par le navigateur</h2>
+        <p>Le site envoie à votre navigateur une politique de sécurité du contenu (CSP) : la liste des seules adresses vers lesquelles la page a le droit d'envoyer des données. Ce sont les trois services ci-dessus. Toute autre tentative est bloquée par le navigateur lui-même, même en cas d'erreur dans le code.</p>
+        <p>Vous pouvez le vérifier : ouvrez les outils de développement de votre navigateur (touche F12, ou Cmd+Option+I sur Mac), onglet « Réseau », puis utilisez un outil. Seules les requêtes décrites ici apparaissent.</p>
+      </section>
+
+      <section aria-labelledby="c4">
+        <h2 id="c4">L'hébergement</h2>
+        <p>Le site est hébergé par Netlify. Comme tout hébergeur, Netlify reçoit techniquement votre adresse IP et le nom de la page demandée quand vous chargez le site. Garde-Mail n'y ajoute aucun outil de suivi.</p>
+      </section>
+
+      <section aria-labelledby="c5">
+        <h2 id="c5">Les liens vers d'autres sites</h2>
+        <p>Les liens vers signal-spam.fr, Have I Been Pwned ou les sources officielles vous font quitter Garde-Mail : ces sites appliquent leurs propres règles. Garde-Mail ne leur indique pas que vous venez de ses pages.</p>
+      </section>
+
+      <section aria-labelledby="c6">
+        <h2 id="c6">Le code est public</h2>
+        <p>Tout le code du site est consultable sur <a href="https://github.com/LeCroco404/garde-mail" rel="noopener noreferrer">GitHub</a>, y compris la politique de sécurité (fichier <code>netlify.toml</code>).</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pied-site">
+    <div class="conteneur pied-site__interieur">
+      <div>
+        <p><strong>Garde-Mail</strong> aide à décider quoi faire d'un message suspect, mais ne garantit rien. En cas de doute, contactez l'organisme concerné par ses coordonnées habituelles.</p>
+        <p>Le code source est public sur <a href="https://github.com/LeCroco404/garde-mail" rel="noopener noreferrer">GitHub</a>.</p>
+      </div>
+      <nav aria-label="Pied de page">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="authenticite.html">Mail authentique ?</a></li>
+          <li><a href="arnaque.html">Arnaque ?</a></li>
+          <li><a href="fuite.html">Fuite de données ?</a></li>
+          <li><a href="si-j-ai-clique.html">J'ai cliqué</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -44,18 +44,16 @@ function afficherResultat({ prefixe, nombre }) {
   if (nombre > 0) {
     const fois = `${nombre.toLocaleString('fr-FR')} fois`;
     zoneResultat.append(creer('div', { classe: 'verdict verdict--eleve' }, [
-      creer('span', { classe: 'verdict__icone', texte: '✕', attributs: { 'aria-hidden': 'true' } }),
+      creer('p', { classe: 'tampon', texte: 'Exposé' }),
       creer('div', {}, [
-        creer('p', { classe: 'verdict__titre', texte: 'Mot de passe exposé' }),
         creer('p', { texte: `Ce mot de passe apparaît ${fois} dans des fuites de données connues. Les pirates l'essaient en priorité : ne l'utilisez plus, nulle part. Changez-le sans attendre sur chaque service où vous l'utilisez, en commençant par votre messagerie.` }),
       ]),
     ]));
     annonce.textContent = `Mot de passe exposé : il apparaît ${fois} dans des fuites connues.`;
   } else {
     zoneResultat.append(creer('div', { classe: 'verdict verdict--faible' }, [
-      creer('span', { classe: 'verdict__icone', texte: 'i', attributs: { 'aria-hidden': 'true' } }),
+      creer('p', { classe: 'tampon', texte: 'Absent des fuites' }),
       creer('div', {}, [
-        creer('p', { classe: 'verdict__titre', texte: 'Absent des fuites connues' }),
         creer('p', { texte: 'Ce mot de passe n’apparaît pas dans les fuites connues de cette base. Cela ne prouve pas qu’il est solide, ni qu’il n’a jamais fuité : il doit aussi être long et unique à chaque service.' }),
       ]),
     ]));

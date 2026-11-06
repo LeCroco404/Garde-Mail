@@ -3,12 +3,98 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Garde-Mail</title>
+  <title>Garde-Mail : réagir face à un message suspect</title>
+  <meta name="description" content="Vérifiez un mail ou un SMS suspect, repérez les arnaques et contrôlez si un mot de passe a fuité. Tout se passe dans votre navigateur.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="polices/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/composants.css">
 </head>
 <body>
-  <main>
-    <h1>Garde-Mail</h1>
-    <p>Site en construction.</p>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <header class="entete-site">
+    <div class="conteneur entete-site__interieur">
+      <a class="marque" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="2.5" y="7" width="27" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M4 9.5 16 18l12-8.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>Garde-Mail</a>
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="authenticite.html">Mail authentique ?</a></li>
+          <li><a href="arnaque.html">Arnaque ?</a></li>
+          <li><a href="fuite.html">Fuite de données ?</a></li>
+          <li><a href="si-j-ai-clique.html">J'ai cliqué</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" tabindex="-1">
+    <div class="bandeau">
+      <div class="conteneur">
+        <h1>Un message vous inquiète ?</h1>
+        <p class="chapeau">Garde-Mail vous aide à décider quoi faire d'un mail ou d'un SMS suspect. Tout se passe dans votre navigateur : rien de ce que vous collez n'est envoyé ni enregistré.</p>
+      </div>
+    </div>
+    <div class="conteneur">
+      <div class="modules">
+        <section class="module" aria-labelledby="m1">
+          <h2 id="m1"><a href="authenticite.html">Ce mail est-il authentique ?</a></h2>
+          <p>Un fraudeur peut afficher n'importe quel expéditeur. L'outil lit les vérifications que votre messagerie a faites à la réception et vous dit si le mail vient vraiment du domaine affiché.</p>
+          <p class="a-coller">À coller : les en-têtes du mail.</p>
+        </section>
+        <section class="module" aria-labelledby="m2">
+          <h2 id="m2"><a href="arnaque.html">Ce message est-il une arnaque ?</a></h2>
+          <p>L'outil repère les liens qui imitent un organisme, l'urgence, les menaces et les demandes de paiement, de données ou de code, et explique chaque signal.</p>
+          <p class="a-coller">À coller : le texte du SMS ou du mail.</p>
+        </section>
+        <section class="module" aria-labelledby="m3">
+          <h2 id="m3"><a href="fuite.html">Mes données ont-elles fuité ?</a></h2>
+          <p>Vérifiez si un mot de passe circule dans des fuites connues, sans jamais l'envoyer, et découvrez quoi faire si c'est le cas.</p>
+          <p class="a-coller">À taper : un mot de passe.</p>
+        </section>
+      </div>
+
+      <section class="urgence" aria-labelledby="titre-urgence">
+        <div>
+          <h2 id="titre-urgence">Vous avez déjà cliqué, payé ou donné un code ?</h2>
+          <p>Selon ce que vous avez fait, quelques gestes rapides limitent les dégâts : faire opposition, changer un mot de passe, garder les preuves.</p>
+        </div>
+        <a class="bouton bouton--principal" href="si-j-ai-clique.html">Voir quoi faire maintenant</a>
+      </section>
+
+      <div class="deux-colonnes">
+        <section aria-labelledby="titre-donnees">
+          <h2 id="titre-donnees">Vos données restent chez vous</h2>
+          <p>Les en-têtes, messages et mots de passe sont analysés sur votre appareil. Il n'y a ni compte, ni cookie, ni mesure d'audience.</p>
+          <p>Seules deux informations peuvent sortir, et toujours à votre demande : le nom de domaine d'un expéditeur (pour consulter le DNS) et les 5 premiers caractères de l'empreinte d'un mot de passe.</p>
+          <p><a href="confidentialite.html">Le détail, et comment le vérifier vous-même</a></p>
+        </section>
+        <section aria-labelledby="titre-reflexes">
+        <h2 id="titre-reflexes">Les bons réflexes</h2>
+        <p>En cas de doute, ne répondez pas, ne cliquez sur aucun lien et ne communiquez aucune information. Contactez directement l'organisme concerné avec ses coordonnées habituelles, jamais celles du message.</p>
+        <p>Signalez les mails suspects sur <a href="https://www.signal-spam.fr" rel="noopener noreferrer">signal-spam.fr</a> et les SMS suspects en les transférant gratuitement au 33700. Pour un conseil, Info Escroqueries répond au 0 805 805 817 (appel gratuit).</p>
+        <p class="sources">Sources : <a href="https://www.cybermalveillance.gouv.fr/medias/2026/02/260129_FicheReflexe_Hameconnage.pdf" rel="noopener noreferrer">fiche réflexe « Hameçonnage » de Cybermalveillance.gouv.fr</a> ; <a href="https://www.economie.gouv.fr/dgccrf/sms-et-appels-indesirables-le-33-700-facilite-le-signalement-des-numeros-frauduleux" rel="noopener noreferrer">DGCCRF, le 33 700</a>.</p>
+        </section>
+      </div>
+    </div>
   </main>
+
+  <footer class="pied-site">
+    <div class="conteneur pied-site__interieur">
+      <div>
+        <p><strong>Garde-Mail</strong> aide à décider quoi faire d'un message suspect, mais ne garantit rien. En cas de doute, contactez l'organisme concerné par ses coordonnées habituelles.</p>
+        <p>Le code source est public sur <a href="https://github.com/LeCroco404/garde-mail" rel="noopener noreferrer">GitHub</a>.</p>
+      </div>
+      <nav aria-label="Pied de page">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="authenticite.html">Mail authentique ?</a></li>
+          <li><a href="arnaque.html">Arnaque ?</a></li>
+          <li><a href="fuite.html">Fuite de données ?</a></li>
+          <li><a href="si-j-ai-clique.html">J'ai cliqué</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

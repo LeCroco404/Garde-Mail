@@ -14,17 +14,14 @@ const zoneResultat = document.getElementById('resultat');
 const NIVEAUX = {
   faible: {
     titre: 'Peu de signaux',
-    icone: 'i',
     texte: 'Aucun signal fort n’a été trouvé. Cela ne prouve pas que le message est honnête : en cas de doute, contactez l’organisme par ses coordonnées habituelles.',
   },
   suspect: {
     titre: 'Suspect',
-    icone: '!',
     texte: 'Plusieurs éléments ressemblent à une arnaque. Ne cliquez pas et ne répondez pas avant d’avoir vérifié auprès de l’organisme, par un autre moyen.',
   },
   eleve: {
     titre: 'Très suspect',
-    icone: '✕',
     texte: 'Ce message présente les signes typiques d’une arnaque. Ne cliquez sur aucun lien, ne payez rien, ne donnez aucun code. Signalez-le (signal-spam.fr pour un mail, 33700 pour un SMS), puis supprimez-le.',
   },
 };
@@ -34,15 +31,14 @@ function afficherResultat(r) {
   const n = NIVEAUX[r.niveau];
   zoneResultat.append(creer('h2', { texte: 'Résultat de l’analyse' }));
 
-  // Niveau : texte + icône + jauge, jamais la couleur seule
+  // Niveau : tampon écrit + score + jauge, jamais la couleur seule
   const jauge = creer('meter', {
     attributs: { id: 'jauge', min: '0', max: '100', low: '25', high: '55', optimum: '0', value: String(r.score) },
   });
   zoneResultat.append(
     creer('div', { classe: `verdict verdict--${r.niveau}` }, [
-      creer('span', { classe: 'verdict__icone', texte: n.icone, attributs: { 'aria-hidden': 'true' } }),
+      creer('p', { classe: 'tampon', texte: n.titre }),
       creer('div', {}, [
-        creer('p', { classe: 'verdict__titre', texte: n.titre }),
         creer('p', { classe: 'score' }, [
           creer('label', { texte: `Score de risque : ${r.score} / 100`, attributs: { for: 'jauge' } }),
           jauge,
@@ -59,7 +55,7 @@ function afficherResultat(r) {
   } else {
     zoneResultat.append(
       creer('p', { classe: 'aide', texte: 'Les liens sont affichés désactivés (hxxp, [.]) pour qu’on ne puisse pas les ouvrir par erreur.' }),
-      creer('ul', { classe: 'liste-signaux' }, r.liens.map((l) => {
+      creer('ul', { classe: 'liste-signaux liste-signaux--points' }, r.liens.map((l) => {
         let badge;
         let explication;
         if (l.signal) {
@@ -82,7 +78,7 @@ function afficherResultat(r) {
   if (r.signaux.length === 0) {
     zoneResultat.append(creer('p', { texte: 'Aucun signal trouvé dans le texte.' }));
   } else {
-    zoneResultat.append(creer('ul', { classe: 'liste-signaux' }, r.signaux.map((s) =>
+    zoneResultat.append(creer('ul', { classe: 'liste-signaux liste-signaux--points' }, r.signaux.map((s) =>
       creer('li', { classe: 'signal' }, [
         creer('span', { classe: 'badge badge--attention', texte: `+${s.points}` }),
         creer('span', {}, [

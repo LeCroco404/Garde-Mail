@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ce mail est-il authentique ? · Garde-Mail</title>
+  <title>Ce mail est-il authentique ? · Garde-Mail</title>
   <meta name="description" content="Vérifiez si un mail vient vraiment de l'expéditeur affiché, à partir de ses en-têtes (SPF, DKIM, DMARC). Analyse faite dans votre navigateur.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="polices/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/composants.css">
-  <!-- type="module" : chargement différé, import/export entre fichiers -->
   <script type="module" src="js/authenticite/page.js"></script>
 </head>
 <body>
@@ -15,111 +16,118 @@
 
   <header class="entete-site">
     <div class="conteneur entete-site__interieur">
-      <a class="marque" href="index.html">Garde-Mail</a>
+      <a class="marque" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="2.5" y="7" width="27" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M4 9.5 16 18l12-8.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>Garde-Mail</a>
       <nav aria-label="Navigation principale">
         <ul>
-          <li><a href="authenticite.html" aria-current="page">Mail authentique ?</a></li>
-          <li><a href="arnaque.html">Arnaque ?</a></li>
-          <li><a href="fuite.html">Fuite de données ?</a></li>
+          <li><a href="authenticite.html" aria-current="page">Mail authentique ?</a></li>
+          <li><a href="arnaque.html">Arnaque ?</a></li>
+          <li><a href="fuite.html">Fuite de données ?</a></li>
           <li><a href="si-j-ai-clique.html">J'ai cliqué</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="contenu" class="conteneur" tabindex="-1">
-    <h1>Ce mail est-il authentique ?</h1>
-    <p class="chapeau">Un fraudeur peut afficher n'importe quelle adresse d'expéditeur. Les en-têtes du message indiquent si votre messagerie a pu vérifier que le mail vient bien du domaine affiché.</p>
-
-    <p class="note-confidentialite">
-      <strong>Confidentialité :</strong> l'analyse se fait entièrement dans votre navigateur. Le texte collé n'est ni enregistré ni envoyé.
-      <a href="confidentialite.html">En savoir plus</a>
-    </p>
-
-    <noscript><p class="alerte">Cet outil a besoin de JavaScript pour fonctionner.</p></noscript>
-
-    <!-- method="post" : même si le formulaire partait, le texte n'apparaîtrait pas dans l'URL.
-         Sur Netlify, la CSP « form-action 'none' » bloque de toute façon l'envoi. -->
-    <form id="formulaire-entetes" class="formulaire" method="post" novalidate>
-      <div class="champ">
-        <label for="entetes">En-têtes complets du message</label>
-        <p id="entetes-aide" class="aide">Vous pouvez coller la source complète du message : seule la partie en-têtes est lue. Le guide plus bas explique comment l'obtenir.</p>
-        <!-- spellcheck="false" : certains correcteurs orthographiques envoient le texte à un serveur -->
-        <textarea id="entetes" name="entetes" rows="12" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" aria-describedby="entetes-aide"></textarea>
+  <main id="contenu" tabindex="-1">
+    <div class="bandeau">
+      <div class="conteneur">
+        <h1>Ce mail est-il authentique ?</h1>
+        <p class="chapeau">Un fraudeur peut afficher n'importe quelle adresse d'expéditeur. Les en-têtes du message indiquent si votre messagerie a pu vérifier que le mail vient bien du domaine affiché.</p>
+        <p class="confidentialite-courte">L'analyse se fait dans votre navigateur : le texte collé n'est ni envoyé ni enregistré. <a href="confidentialite.html">Ce qui reste chez vous</a></p>
       </div>
-      <!-- Affiché tant que le JavaScript n'est pas chargé ; page.js le masque -->
-      <p id="chargement" class="alerte">Chargement de l'outil… Si ce message reste affiché, l'outil n'a pas pu se charger : rechargez la page.</p>
-      <div class="boutons">
-        <!-- Désactivé tant que page.js n'est pas chargé : aucun envoi possible sans l'analyse locale -->
-        <button type="submit" class="bouton bouton--principal" disabled>Analyser</button>
-        <button type="button" id="effacer" class="bouton bouton--secondaire">Effacer</button>
+    </div>
+    <div class="conteneur disposition">
+      <div>
+        <noscript><p class="alerte">Cet outil a besoin de JavaScript pour fonctionner.</p></noscript>
+        <!-- method="post" : même si le formulaire partait, le texte n'apparaîtrait pas dans l'URL.
+             Sur Netlify, la CSP « form-action 'none' » bloque de toute façon l'envoi. -->
+        <form id="formulaire-entetes" class="formulaire" method="post" novalidate>
+          <div class="champ">
+            <label for="entetes">En-têtes complets du message</label>
+            <p id="entetes-aide" class="aide">Vous pouvez coller la source complète du message : seule la partie en-têtes est lue. Le guide « Récupérer les en-têtes » explique comment l'obtenir.</p>
+            <!-- spellcheck="false" : certains correcteurs orthographiques envoient le texte à un serveur -->
+            <textarea id="entetes" name="entetes" rows="12" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" aria-describedby="entetes-aide"></textarea>
+          </div>
+          <p id="chargement" class="alerte">Chargement de l'outil… Si ce message reste affiché, l'outil n'a pas pu se charger : rechargez la page.</p>
+          <div class="boutons">
+            <!-- Désactivé tant que page.js n'est pas chargé : aucun envoi possible sans l'analyse locale -->
+            <button type="submit" class="bouton bouton--principal" disabled>Analyser</button>
+            <button type="button" id="effacer" class="bouton bouton--secondaire">Effacer</button>
+          </div>
+        </form>
+
+        <!-- Annonce courte pour les lecteurs d'écran ; le détail est dans #resultat -->
+        <p id="annonce" class="sr-only" aria-live="polite"></p>
+        <section id="resultat" class="resultat" aria-label="Résultat de l'analyse"></section>
       </div>
-    </form>
 
-    <!-- Annonce courte pour les lecteurs d'écran ; le détail est dans #resultat -->
-    <p id="annonce" class="sr-only" aria-live="polite"></p>
-    <section id="resultat" class="resultat" aria-label="Résultat de l'analyse"></section>
-
-    <section class="guide" aria-labelledby="titre-guide">
-      <h2 id="titre-guide">Comment récupérer les en-têtes ?</h2>
-      <p>Les en-têtes ne sont accessibles que depuis un ordinateur. Copiez tout le texte affiché, puis collez-le dans le champ ci-dessus.</p>
-
-      <details>
-        <summary>Gmail (sur ordinateur)</summary>
-        <ol>
-          <li>Ouvrez le message.</li>
-          <li>Cliquez sur l'icône Plus (trois points) à côté de « Répondre ».</li>
-          <li>Choisissez « Afficher l'original ».</li>
-          <li>Cliquez sur « Copier dans le presse-papiers ».</li>
-        </ol>
-      </details>
-
-      <details>
-        <summary>Outlook.com, Outlook sur le web et nouvel Outlook</summary>
-        <ol>
-          <li>Ouvrez le message.</li>
-          <li>Cliquez sur « … » (Plus d'actions) en haut du message.</li>
-          <li>Choisissez « Afficher », puis « Afficher les détails du message ».</li>
-          <li>Sélectionnez tout le texte et copiez-le.</li>
-        </ol>
-      </details>
-
-      <details>
-        <summary>Outlook classique (Windows)</summary>
-        <ol>
-          <li>Ouvrez le message dans sa propre fenêtre (double-clic).</li>
-          <li>Cliquez sur « Fichier », puis « Propriétés ».</li>
-          <li>Cliquez dans la zone « En-têtes Internet », faites Ctrl+A puis Ctrl+C.</li>
-        </ol>
-      </details>
-
-      <details>
-        <summary>Apple Mail (Mac)</summary>
-        <ol>
-          <li>Ouvrez le message.</li>
-          <li>Dans la barre de menus, choisissez « Présentation », puis « Message », puis « Source brute ».</li>
-          <li>Sélectionnez tout le texte (Cmd+A) et copiez-le (Cmd+C).</li>
-        </ol>
-        <p>L'option « Présentation », « Message », « Tous les en-têtes » fonctionne aussi, mais la copie est moins pratique.</p>
-      </details>
-
-      <details>
-        <summary>Sur téléphone</summary>
-        <p>Les applications Gmail, Mail (iPhone) et Outlook mobile ne permettent pas d'afficher les en-têtes. Ouvrez votre messagerie sur un ordinateur.</p>
-      </details>
-    </section>
-
-    <section class="reflexes" aria-labelledby="titre-reflexes">
-      <h2 id="titre-reflexes">Les bons réflexes</h2>
-      <p>En cas de doute, ne répondez pas, ne cliquez sur aucun lien et ne communiquez aucune information. Contactez directement l'organisme concerné avec ses coordonnées habituelles, jamais celles du message.</p>
-      <p>Signalez les mails suspects sur <a href="https://www.signal-spam.fr" rel="noopener noreferrer">signal-spam.fr</a> et les SMS suspects en les transférant gratuitement au 33700. Pour un conseil, Info Escroqueries répond au 0 805 805 817 (appel gratuit).</p>
-      <p class="aide">Sources : <a href="https://www.cybermalveillance.gouv.fr/medias/2026/02/260129_FicheReflexe_Hameconnage.pdf" rel="noopener noreferrer">fiche réflexe « Hameçonnage » de Cybermalveillance.gouv.fr</a> ; <a href="https://www.economie.gouv.fr/dgccrf/sms-et-appels-indesirables-le-33-700-facilite-le-signalement-des-numeros-frauduleux" rel="noopener noreferrer">DGCCRF, le 33 700</a>.</p>
-    </section>
+      <aside aria-labelledby="titre-guide">
+        <h2 id="titre-guide">Récupérer les en-têtes</h2>
+        <p>Les en-têtes ne sont accessibles que depuis un ordinateur. Copiez tout le texte affiché, puis collez-le dans le champ.</p>
+        <div class="accordeons">
+          <details>
+            <summary>Gmail</summary>
+            <ol>
+              <li>Ouvrez le message.</li>
+              <li>Cliquez sur l'icône Plus (trois points) à côté de « Répondre ».</li>
+              <li>Choisissez « Afficher l'original ».</li>
+              <li>Cliquez sur « Copier dans le presse-papiers ».</li>
+            </ol>
+          </details>
+          <details>
+            <summary>Outlook.com, Outlook sur le web, nouvel Outlook</summary>
+            <ol>
+              <li>Ouvrez le message.</li>
+              <li>Cliquez sur « … » (Plus d'actions) en haut du message.</li>
+              <li>Choisissez « Afficher », puis « Afficher les détails du message ».</li>
+              <li>Sélectionnez tout le texte et copiez-le.</li>
+            </ol>
+          </details>
+          <details>
+            <summary>Outlook classique (Windows)</summary>
+            <ol>
+              <li>Ouvrez le message dans sa propre fenêtre (double-clic).</li>
+              <li>Cliquez sur « Fichier », puis « Propriétés ».</li>
+              <li>Cliquez dans la zone « En-têtes Internet », faites Ctrl+A puis Ctrl+C.</li>
+            </ol>
+          </details>
+          <details>
+            <summary>Apple Mail (Mac)</summary>
+            <ol>
+              <li>Ouvrez le message.</li>
+              <li>Dans la barre de menus, choisissez « Présentation », puis « Message », puis « Source brute ».</li>
+              <li>Sélectionnez tout le texte (Cmd+A) et copiez-le (Cmd+C).</li>
+            </ol>
+          </details>
+          <details>
+            <summary>Sur téléphone</summary>
+            <p>Les applications Gmail, Mail (iPhone) et Outlook mobile ne permettent pas d'afficher les en-têtes. Ouvrez votre messagerie sur un ordinateur.</p>
+          </details>
+        </div>
+        <h2 id="titre-reflexes">Les bons réflexes</h2>
+        <p>En cas de doute, ne répondez pas, ne cliquez sur aucun lien et ne communiquez aucune information. Contactez directement l'organisme concerné avec ses coordonnées habituelles, jamais celles du message.</p>
+        <p>Signalez les mails suspects sur <a href="https://www.signal-spam.fr" rel="noopener noreferrer">signal-spam.fr</a> et les SMS suspects en les transférant gratuitement au 33700. Pour un conseil, Info Escroqueries répond au 0 805 805 817 (appel gratuit).</p>
+        <p class="sources">Sources : <a href="https://www.cybermalveillance.gouv.fr/medias/2026/02/260129_FicheReflexe_Hameconnage.pdf" rel="noopener noreferrer">fiche réflexe « Hameçonnage » de Cybermalveillance.gouv.fr</a> ; <a href="https://www.economie.gouv.fr/dgccrf/sms-et-appels-indesirables-le-33-700-facilite-le-signalement-des-numeros-frauduleux" rel="noopener noreferrer">DGCCRF, le 33 700</a>.</p>
+      </aside>
+    </div>
   </main>
 
   <footer class="pied-site">
-    <div class="conteneur">
-      <p>Garde-Mail aide à décider mais ne garantit rien. <a href="confidentialite.html">Confidentialité</a></p>
+    <div class="conteneur pied-site__interieur">
+      <div>
+        <p><strong>Garde-Mail</strong> aide à décider quoi faire d'un message suspect, mais ne garantit rien. En cas de doute, contactez l'organisme concerné par ses coordonnées habituelles.</p>
+        <p>Le code source est public sur <a href="https://github.com/LeCroco404/garde-mail" rel="noopener noreferrer">GitHub</a>.</p>
+      </div>
+      <nav aria-label="Pied de page">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="authenticite.html">Mail authentique ?</a></li>
+          <li><a href="arnaque.html">Arnaque ?</a></li>
+          <li><a href="fuite.html">Fuite de données ?</a></li>
+          <li><a href="si-j-ai-clique.html">J'ai cliqué</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
 </body>
