@@ -62,6 +62,7 @@
 /* ------------------------------------------------------------------ */
 
 .resultat:empty { display: none; }
+.resultat { overflow-x: clip; } /* le tampon agrandi pendant sa pose ne crée pas de défilement horizontal */
 .resultat > h2 { margin-top: 2.25rem; }
 
 .verdict {
@@ -105,6 +106,10 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .tampon { animation: none; }
+}
+/* Très petits écrans (320 px) : le tampon peut passer sur deux lignes */
+@media (max-width: 24rem) {
+  .tampon { white-space: normal; max-width: calc(100% - 2rem); font-size: 1.15rem; } /* marge pour la rotation */
 }
 
 .verdict--authentique { --encre: var(--vert); background: var(--vert-fond); }
