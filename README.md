@@ -2,6 +2,8 @@
 
 Mini-site qui aide le grand public à réagir face à un mail ou un SMS suspect. Il est statique, sans framework, et tout se passe dans le navigateur : rien de ce que l'utilisateur colle n'est envoyé ni enregistré.
 
+Site en ligne : https://garde-mail.netlify.app
+
 ## Les trois modules
 
 **Ce mail est-il authentique ?** (`authenticite.html`). L'utilisateur colle les en-têtes d'un mail, avec un guide pour les obtenir dans Gmail, Outlook et Apple Mail. L'outil lit les résultats SPF, DKIM et DMARC notés par la messagerie du destinataire (`Authentication-Results`). Il recalcule l'alignement entre le domaine du `From`, celui du `Return-Path` et celui de la signature DKIM, et repère les incohérences : faux nom affiché, `Reply-To` détourné, en-tête d'authentification injecté, punycode, imitation d'un organisme. Il rend un verdict (authentique, douteux, usurpé probable) avec une explication en langage simple. En option, il consulte les enregistrements SPF et DMARC du domaine par DNS-over-HTTPS.
